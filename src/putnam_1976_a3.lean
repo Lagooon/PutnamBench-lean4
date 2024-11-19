@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 abbrev putnam_1976_a3_solution : Set (ℕ × ℕ × ℕ × ℕ) := sorry
 -- {(3, 2, 2, 3), (2, 3, 3, 2)}

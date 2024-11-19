@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 abbrev putnam_1979_a2_solution : ℝ → Prop := sorry
 -- fun k : ℝ => k ≥ 0

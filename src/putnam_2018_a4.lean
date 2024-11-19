@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 -- Note: uses (ℕ → ℕ) instead of (Set.Icc 1 n → ℕ)
 /--

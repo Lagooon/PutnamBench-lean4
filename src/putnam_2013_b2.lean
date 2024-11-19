@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 open Function Set
 
@@ -16,15 +17,15 @@ $f(x) \geq 0$ for all real $x$, and
 \item[(ii)]
 $a_n = 0$ whenever $n$ is a multiple of $3$.
 \end{enumerate}
-Determine the maximum value of $f(0)$ as $f$ ranges through $C$, and
+Determine the maximum value of $f(0)$ as $f$ ranges through $C$, and 
 prove that this maximum is attained.
 -/
 theorem putnam_2013_b2
-  (CN : ℕ → Set (ℝ → ℝ))
-  (hCN : ∀ N : ℕ, CN N =
-    {f : ℝ → ℝ |
-      (∀ x : ℝ, f x ≥ 0) ∧
-      ∃ a : List ℝ, a.length = N + 1 ∧ (∀ n : Fin (N + 1), 3 ∣ (n : ℕ) → a[n]! = 0) ∧
-      ∀ x : ℝ, f x = 1 + ∑ n in Finset.Icc 1 N, a[(n : ℕ)]! * Real.cos (2*Real.pi*n*x)}) :
-  IsGreatest {f 0 | f ∈ ⋃ N ∈ Ici 1, CN N} putnam_2013_b2_solution :=
+(CN : ℕ → Set (ℝ → ℝ))
+(C : Set (ℝ → ℝ))
+(hCN : CN = fun N : ℕ => {f : ℝ → ℝ | (∀ x : ℝ, f x ≥ 0) ∧
+∃ a : List ℝ, a.length = N + 1 ∧ (∀ n : Fin (N + 1), 3 ∣ (n : ℕ) → a[n]! = 0) ∧
+∀ x : ℝ, f x = 1 + ∑ n in Finset.Icc 1 N, a[(n : ℕ)]! * Real.cos (2*Real.pi*n*x)})
+(hC : C = ⋃ N ∈ Ici 1, CN N)
+: (∀ f ∈ C, f 0 ≤ putnam_2013_b2_solution) ∧ ∃ f ∈ C, f 0 = putnam_2013_b2_solution :=
 sorry

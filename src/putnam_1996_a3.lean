@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 abbrev putnam_1996_a3_solution : Prop := sorry
 -- False

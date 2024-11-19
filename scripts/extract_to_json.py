@@ -10,21 +10,15 @@ coq_regex_match = re.compile(coq_regex, re.MULTILINE)
 isabelle_regex = r"theory (\w+) imports"
 isabelle_regex_match = re.compile(isabelle_regex, re.MULTILINE)
 
-def extract_lean(filename, file_path):
-    with open(filename, "r", encoding="utf-8") as f:
+def extract_lean(filename):
+    with open(filename, "r") as f:
         text = f.read()
     matches = lean_regex_match.findall(text)
     theorems = []
     for match in matches:
         thm_name = match[2]
         full_thm = match[0]
-        theorems.append({
-            "full_name": thm_name, 
-            "statement": full_thm, 
-            "url": "https://github.com/trishullab/PutnamBench", 
-            "commit": "6adbae90d6ef94de32926d6b78a6424038f463b8", 
-            "file_path": file_path,
-        })
+        theorems.append({"name": thm_name, "lean4_statement": full_thm})
     return theorems
 
 def extract_informal(filename, theorems = []):
@@ -95,7 +89,7 @@ def serialize_csv(theorems, output_filename):
 def extract_all_lean(folder, theorems = []):
     for filename in os.listdir(folder):
         if filename.endswith(".lean"):
-            theorems += extract_lean(os.path.join(folder, filename), os.path.join("lean4/src", filename))
+            theorems += extract_lean(os.path.join(folder, filename))
     return theorems
 
 def extract_all_informal(folder, theorems = []):
@@ -116,20 +110,31 @@ def extract_all_isabelle(folder, theorems = []):
     return theorems
 
 def extract_all(folder):
-    theorems = extract_all_lean(os.path.join(folder, "lean4/src"), [])
-    #theorems = extract_all_informal(os.path.join(folder, "informal"), theorems)
-    #theorems = extract_all_coq(os.path.join(folder, "coq"), theorems)
-    #theorems = extract_all_isabelle(os.path.join(folder, "isabelle"), theorems)
+    theorems = extract_all_lean(os.path.join(folder, "lean4"), [])
+    theorems = extract_all_informal(os.path.join(folder, "informal"), theorems)
+    theorems = extract_all_coq(os.path.join(folder, "coq"), theorems)
+    theorems = extract_all_isabelle(os.path.join(folder, "isabelle"), theorems)
+    for thm in theorems:
+        if "informal_statement" not in thm:
+            thm["informal_statement"] = "null"
+        if "informal_solution" not in thm:
+            thm["informal_solution"] = "null"
+        if "tags" not in thm:
+            thm["tags"] = []
+        if "coq_statement" not in thm:
+            thm["coq_statement"] = "null"
+        if "isabelle_statement" not in thm:
+            thm["isabelle_statement"] = "null"
     return theorems
 
 def serialize_all(folder, output_filename):
     theorems = extract_all(folder)
     serialize_jsonl(theorems, os.path.join(folder, f"{output_filename}.jsonl"))
     serialize_json(theorems, os.path.join(folder, f"{output_filename}.json"))
-    serialize_csv(theorems, os.path.join(folder, f"{output_filename}.csv"))
+    #serialize_csv(theorems, os.path.join(folder, f"{output_filename}.csv"))
 
 def main():
-    serialize_all("D:/lhhoi/gits/PutnamBench-main", "putnam")
+    serialize_all("/home/amthakur/Project/PUTNAM", "putnam")
 
 if __name__ == '__main__':
     main()

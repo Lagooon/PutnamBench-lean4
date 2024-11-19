@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 abbrev putnam_2006_b3_solution : ℕ → ℕ := sorry
 -- (fun n : ℕ => (Nat.choose n 2) + 1)

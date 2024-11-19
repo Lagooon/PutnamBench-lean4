@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 -- Note: this problem admits several possible correct solutions; this is the one shown on the solutions document
 abbrev putnam_2015_a2_solution : ℕ := sorry

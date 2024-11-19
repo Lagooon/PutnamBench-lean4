@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 noncomputable abbrev putnam_2006_a1_solution : ℝ := sorry
 -- 6 * Real.pi ^ 2

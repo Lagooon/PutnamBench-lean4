@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 -- Note: uses (ℕ → ℕ) instead of (Equiv.Perm (Fin n))
 noncomputable abbrev putnam_2006_a4_solution : ℕ → ℝ := sorry

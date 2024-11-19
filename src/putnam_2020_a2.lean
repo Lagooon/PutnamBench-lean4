@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 abbrev putnam_2020_a2_solution : ℕ → ℕ := sorry
 -- fun k ↦ 4 ^ k

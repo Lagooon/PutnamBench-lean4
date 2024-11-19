@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 open Nat
 
@@ -11,6 +12,6 @@ theorem putnam_2002_a1
 (k : ℕ)
 (P : ℕ → Polynomial ℝ)
 (kpos : k > 0)
-(Pderiv : ∀ n x, iteratedDeriv n (fun x' : ℝ => 1 / (x' ^ k - 1)) x = ((P n).eval x) / ((x ^ k - 1) ^ (n + 1)))
-: ∀ n, (P n).eval 1 = putnam_2002_a1_solution k n :=
+(Pderiv : ∀ n : ℕ, ∀ x : ℝ, iteratedDeriv n (fun x' : ℝ => 1 / (x' ^ k - 1)) x = ((P n).eval x) / ((x ^ k - 1) ^ (n + 1)))
+: ∀ n : ℕ, (P n).eval 1 = putnam_2002_a1_solution k n :=
 sorry

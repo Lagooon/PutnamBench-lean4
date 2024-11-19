@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 -- Note: uses (ℕ → (Fin 3 → ℕ)) instead of (Fin (N + 1) → (Fin 3 → ℕ))
 /--

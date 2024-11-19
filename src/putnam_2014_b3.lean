@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 open Topology Filter Nat
 
@@ -8,7 +9,7 @@ Let $A$ be an $m \times n$ matrix with rational entries. Suppose that there are 
 theorem putnam_2014_b3
 (m n : ℕ)
 (A : Matrix (Fin m) (Fin n) ℚ)
-(mnpos : 0 < m ∧ 0 < n)
+(mnpos : m > 0 ∧ n > 0)
 (Aprime : {p : ℕ | p.Prime ∧ ∃ (i : Fin m) (j : Fin n), |A i j| = p}.encard ≥ m + n)
 : A.rank ≥ 2 :=
 sorry

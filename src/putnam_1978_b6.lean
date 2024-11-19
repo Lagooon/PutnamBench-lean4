@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 open Set Real Filter Topology Polynomial
 

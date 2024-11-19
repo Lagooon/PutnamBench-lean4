@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 open Matrix
 
@@ -8,6 +9,6 @@ Let $d_1,d_2,\dots,d_{12}$ be real numbers in the open interval $(1,12)$. Show t
 -/
 theorem putnam_2012_a1
 (d : Fin 12 → ℝ)
-(hd : ∀ i, d i ∈ Set.Ioo 1 12)
-: ∃ i j k, i ≠ j ∧ i ≠ k ∧ j ≠ k ∧ d k ≥ d i ∧ d k ≥ d j ∧ (d i) ^ 2 + (d j) ^ 2 > (d k) ^ 2 :=
+(hd : ∀ i : Fin 12, d i ∈ Set.Ioo 1 12)
+: ∃ i j k : Fin 12, i ≠ j ∧ i ≠ k ∧ j ≠ k ∧ d k ≥ d i ∧ d k ≥ d j ∧ (d i) ^ 2 + (d j) ^ 2 > (d k) ^ 2 :=
 sorry

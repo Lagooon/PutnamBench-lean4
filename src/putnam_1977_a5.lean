@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 open RingHom Set Nat
 

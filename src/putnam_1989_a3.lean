@@ -1,5 +1,5 @@
 import Mathlib
-open Complex
+open BigOperators Complex
 
 /--
 Prove that if

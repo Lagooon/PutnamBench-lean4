@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 open Topology Filter Nat Function Polynomial
 
@@ -21,7 +22,7 @@ Let $D_n$ denote the value of the $(n-1) \times (n-1)$ determinant
 Is the set $\left\{ \frac{D_n}{n!} \right\}_{n \geq 2}$ bounded?
 -/
 theorem putnam_1992_b5
-  (D : ℕ → ℚ)
-  (hD : ∀ n, D n = Matrix.det (fun i j : Fin (n - 1) ↦ ite (i = j) ((i : ℕ) + 3 : ℚ) 1)) :
-  putnam_1992_b5_solution ↔ (Bornology.IsBounded {x | ∃ n ≥ 2, D n / factorial n = x}) :=
+(D : ℕ → ℚ)
+(hD : D = fun (n : ℕ) ↦ Matrix.det (fun i j : Fin (n - 1) ↦ ite (i = j) ((i : ℕ) + 3 : ℚ) 1))
+: ((Bornology.IsBounded {x | ∃ n ≥ 2, D n / factorial n = x}) ↔ putnam_1992_b5_solution) :=
 sorry

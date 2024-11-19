@@ -1,4 +1,5 @@
 import Mathlib
+open BigOperators
 
 open Topology MvPolynomial Filter Set Metric
 
